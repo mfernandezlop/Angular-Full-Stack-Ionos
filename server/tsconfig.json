@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../dist/back/server",
+    "outDir": "../dist/public/server",
     "baseUrl": "",
     "module": "commonjs",
     "skipLibCheck": true // Added due to mocha and jasmine errors
