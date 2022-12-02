@@ -1,0 +1,18 @@
+// You can add global styles to this file, and also import other style files
+// Import Bootstrap
+@import '../node_modules/bootstrap/scss/functions';
+
+// Add custom bootstrap styles here
+
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+
+body {
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
