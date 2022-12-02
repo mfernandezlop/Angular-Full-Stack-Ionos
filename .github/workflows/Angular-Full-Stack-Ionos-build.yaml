@@ -14,7 +14,7 @@ on:
         type: string
 
 env:
-  DEPLOYMENT_FOLDER: out
+  DEPLOYMENT_FOLDER: ./
 jobs:
 # Please do not rename this job
   build-project:
@@ -36,7 +36,7 @@ jobs:
           CI: true
           SITE_URL: ${{ inputs.site-url }}
         run: |
-          npm ci
+          npm install
           npm run build
 
 # Please do not touch the following action
