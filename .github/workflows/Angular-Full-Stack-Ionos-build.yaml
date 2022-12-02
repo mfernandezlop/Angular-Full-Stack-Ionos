@@ -14,18 +14,30 @@ on:
         type: string
 
 env:
-  DEPLOYMENT_FOLDER: ./
-
+  DEPLOYMENT_FOLDER: out
 jobs:
 # Please do not rename this job
   build-project:
-    name: build Angular-Full-Stack-Ionos
+    name: build test
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: v16.x
+
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ inputs.site-url }}
+        run: |
+          npm ci
+          npm run build
 
 # Please do not touch the following action
       - name: Store deployment content
