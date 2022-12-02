@@ -41,7 +41,6 @@ jobs:
           npm ci
           npm run build
           npm run predev
-          npm start
 
 # Please do not touch the following action
       - name: Store deployment content
