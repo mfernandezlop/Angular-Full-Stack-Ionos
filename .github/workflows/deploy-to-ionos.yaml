@@ -143,4 +143,4 @@ jobs:
         run: |
           npm ci
           npm run predev
-          npm run start2
+          npm run start
