@@ -7,6 +7,9 @@ name: "Deploy Now: Deploy to IONOS"
 on:
   workflow_dispatch:
     inputs:
+      site-url:
+        required: true
+        type: string
       version:
         required: true
         type: string
@@ -19,8 +22,7 @@ on:
       deployment-ids:
         require: true
         type: string
-env:
-  DEPLOYMENT_FOLDER: ./
+
 concurrency: ${{ github.ref }}
 
 jobs:
@@ -79,7 +81,6 @@ jobs:
           for file in `grep -rl 'https://IONOS_DEPLOY_NOW_SITE_URL' .`; do
             sed -i $file -e 's|https://IONOS_DEPLOY_NOW_SITE_URL|${{ fromJson(steps.deployment.outputs.info).site-url }}|g'
           done
-
       - name: Render SSH user secret name
         run: echo SSH_USERNAME_SECRET=IONOS_DEPLOYMENT_`echo ${{ matrix.deployment-id }} | tr '[:lower:]' '[:upper:]' | tr '-' '_'`_SSH_USERNAME >> $GITHUB_ENV
 
@@ -131,7 +132,6 @@ jobs:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
           submodules: 'recursive'
-          dist-folder: ./server
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -144,4 +144,5 @@ jobs:
         run: |
           npm install
           npm ci
-          npm run start
+          npm run predev
+          npm start
