@@ -147,8 +147,9 @@ jobs:
       - name: Build Node assets
         env:
           CI: true
-          SITE_URL: ${{ inputs.site-url }}
+          SITE_URL: https://IONOS_DEPLOY_NOW_SITE_URL:3000/
         run: |
           npm ci
+          npm run build
           npm run predev
           npm run start
