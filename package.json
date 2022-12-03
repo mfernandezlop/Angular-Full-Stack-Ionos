@@ -1,8 +1,8 @@
 {
   "name": "angular-client-app",
   "version": "15.0.0",
-  "license": "MIT",
-  "author": "Davide Violante",
+  "license": "",
+  "author": "mm",
   "description": "Angular Full Stack project built using Angular 2+, Express, Mongoose and Node.",
   "engines": {
     "node": ">=16",
