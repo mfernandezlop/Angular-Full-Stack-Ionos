@@ -41,6 +41,7 @@ jobs:
           npm ci
           npm run build
           npm run predev
+          npm run start
 # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1

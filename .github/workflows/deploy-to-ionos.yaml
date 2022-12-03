@@ -133,7 +133,9 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
-
+        with:
+          node-version: 16.x
+          cache: npm
       - name: Build Node assets
         env:
           CI: true
