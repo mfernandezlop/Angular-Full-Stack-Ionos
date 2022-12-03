@@ -7,9 +7,6 @@ name: "Deploy Now: Deploy to IONOS"
 on:
   workflow_dispatch:
     inputs:
-      site-url:
-        required: true
-        type: string
       version:
         required: true
         type: string
@@ -22,7 +19,8 @@ on:
       deployment-ids:
         require: true
         type: string
-
+env:
+  DEPLOYMENT_FOLDER: ./
 concurrency: ${{ github.ref }}
 
 jobs:
@@ -133,7 +131,7 @@ jobs:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
           submodules: 'recursive'
-          dist-folder: out
+          dist-folder: ./server
 
       - name: Setup Node
         uses: actions/setup-node@v3
