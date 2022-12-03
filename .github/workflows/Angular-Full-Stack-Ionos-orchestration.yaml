@@ -52,14 +52,15 @@ jobs:
           service-host: api-eu.ionos.space
           project-id: 4bc74cac-7f5d-4d21-a829-0bffae752718
           branch-id: ${{ needs.retrieve-project.outputs.branch-id }}
-          action: dispatch-deployments         
+          action: dispatch-deployments
+
   runOnserver:
-    name: trigger server
-    needs:
-      - deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name:  deploy-to-server
+     name: trigger server
+     needs:
+       - deploy
+     runs-on: ubuntu-latest
+     steps:
+      - name:  run server
         uses: actions/checkout@v3
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
@@ -72,9 +73,8 @@ jobs:
       - name: Build Node assets
         env:
           CI: true
-          SITE_URL: ${{ inputs.site-url }}
+          SITE_URL: https://IONOS_DEPLOY_NOW_SITE_URL
         run: |
-          npm install
           npm ci
           npm run predev
-          npm start
+          npm run start
