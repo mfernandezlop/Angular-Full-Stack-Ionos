@@ -15,6 +15,7 @@
     "start": "node dist/public/server/app.js",
     "start1": "node dist/server/app.js",
     "start2": "node ./server/app.js",
+    "start3": "pm2 start dist/public/server/app.js",
     "predev": "tsc -p server",
     "dev": "concurrently \"mongod\" \"ng serve --open\" \"tsc -w -p server\" \"nodemon dist/server/app.js\"",
     "prod": "concurrently \"mongod\" \"ng build && tsc -p server && node dist/server/app.js\"",
