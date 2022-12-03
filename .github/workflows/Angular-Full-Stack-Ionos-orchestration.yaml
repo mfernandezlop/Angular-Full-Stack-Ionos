@@ -52,4 +52,29 @@ jobs:
           service-host: api-eu.ionos.space
           project-id: 4bc74cac-7f5d-4d21-a829-0bffae752718
           branch-id: ${{ needs.retrieve-project.outputs.branch-id }}
-          action: dispatch-deployments
+          action: dispatch-deployments         
+  runOnserver:
+    name: trigger server
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name:  deploy-to-server
+        uses: actions/checkout@v3
+        with:
+          api-key: ${{ secrets.IONOS_API_KEY }}
+          service-host: api-eu.ionos.space
+          submodules: 'recursive'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ inputs.site-url }}
+        run: |
+          npm install
+          npm ci
+          npm run predev
+          npm start
