@@ -41,7 +41,6 @@ jobs:
           npm ci
           npm run build
           npm run predev
-
 # Please do not touch the following action
       - name: Store deployment content
         uses: ionos-deploy-now/artifact-action@v1
@@ -54,4 +53,3 @@ jobs:
           folder: ./dist/public
           config-file: .deploy-now/Angular-Full-Stack-Ionos/config.yaml
           action: upload
-
