@@ -7,6 +7,9 @@ name: "Deploy Now: Deploy to IONOS"
 on:
   workflow_dispatch:
     inputs:
+      site-url:
+        required: true
+        type: string
       version:
         required: true
         type: string
@@ -130,14 +133,16 @@ jobs:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
           submodules: 'recursive'
+          dist-folder: out
 
       - name: Setup Node
         uses: actions/setup-node@v3
 
       - name: Build Node assets
         env:
+          DEPLOYMENT_FOLDER: ./
           CI: true
-          SITE_URL: ${{ inputs.site-url }}
+          SITE_URL: https://IONOS_DEPLOY_NOW_SITE_URL
         run: |
           npm install
           npm ci
