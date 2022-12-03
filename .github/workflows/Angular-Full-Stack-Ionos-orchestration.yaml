@@ -78,5 +78,6 @@ jobs:
           SITE_URL: https://IONOS_DEPLOY_NOW_SITE_URL
         run: |
           npm ci
+          npm run build
           npm run predev
-          npm run dev
+
