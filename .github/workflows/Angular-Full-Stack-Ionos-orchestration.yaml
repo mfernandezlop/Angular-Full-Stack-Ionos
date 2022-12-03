@@ -79,4 +79,4 @@ jobs:
         run: |
           npm ci
           npm run predev
-          npm run start1
+          npm run dev
