@@ -120,8 +120,8 @@ jobs:
           branch-id: ${{ inputs.branch-id }}
           action: set-deployments-finished
 
-    deploy-to-ionos:
-    needs: deploy-to-ionos
+  deploy-to-node-server:
+    needs: notify-deployment-finished
     runs-on: ubuntu-latest
     steps:
       - name:  deploy-to-node
@@ -141,4 +141,4 @@ jobs:
         run: |
           npm install
           npm ci
-          npm run build
+          npm run start
