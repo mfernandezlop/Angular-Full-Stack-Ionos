@@ -119,3 +119,26 @@ jobs:
           project-id: ${{ inputs.project-id }}
           branch-id: ${{ inputs.branch-id }}
           action: set-deployments-finished
+
+    deploy-to-ionos:
+    needs: deploy-to-ionos
+    runs-on: ubuntu-latest
+    steps:
+      - name:  deploy-to-node
+        uses: actions/checkout@v3
+        with:
+          api-key: ${{ secrets.IONOS_API_KEY }}
+          service-host: api-eu.ionos.space
+          submodules: 'recursive'
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ inputs.site-url }}
+        run: |
+          npm install
+          npm ci
+          npm run build
